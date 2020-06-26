@@ -1,0 +1,86 @@
+step 1: Inrallion procedure 
+yum install wget unzip
+yum update
+Step 2: Download Terraform Package
+wget https://releases.hashicorp.com/terraform/0.12.17/terraform_0.12.17_linux_amd64.zip
+Step 3: Unzip Package
+Once downloaded you need to unzip the package on /usr/local/bin.
+unzip terraform_0.12.16_linux_amd64.zip /usr/local/bin
+Step 4: Check Terraform Version
+terraform -v 
+and verify terraform dicotry by which cmd 
+sudo which terraform    
+#out will be like this
+/usr/local/bin/terraform
+
+##Using Terraform to Manage Infrastructure
+Now that terraform is installed, let’s create a test project for to create lightsail innsatnce.
+
+$ mkdir projects
+$ cd projects
+$ touch main.tf 
+vi main.tf
+
+# Provider
+ provider "aws" {
+   access_key = "your-access-key"
+   secret_key = "your-secert-key"
+   region = "ap-southeast-1"
+ }
+
+
+now init the terraform tf file
+$ terraform init
+
+#now again vi main.tf and add this cod for to create lightsail of 1cpu and 2gb
+vi main.tf
+# Provider
+ provider "aws" {
+   access_key = "AKIAZPTNDGAQPBV4SI5D"
+   secret_key = "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"
+   region = "ap-southeast-1"
+ }
+
+#Create a new test instance Lightsail Instance
+resource "aws_lightsail_instance" "terraform_test" {
+  name              = "terraform_test"
+  availability_zone = "ap-southeast-1a"
+  blueprint_id      = "centos_7_1901_01"
+  bundle_id         = "micro_2_0"
+  key_pair_name     = "jenkins"
+  tags = {
+     foo = "terraform"
+  }
+}
+
+now run this cmd to verify tf file
+$terraform  --it will list the terraform all cmd
+$ terraform plan
+$ terraform apply 
+
+##now your you instance will created
+references
+##for installation 
+https://computingforgeeks.com/how-to-install-terraform-on-ubuntu-centos-7/
+https://www.cyberithub.com/how-to-install-terraform-on-centos-7/
+### for lightsail instance create
+ https://www.terraform.io/docs/providers/aws/r/lightsail_instance.html#centos_7_1901_01
+ https://droidbasement.com/db-blog/aws-terraform-provision-a-lightsail-instance-using-infrastructure-as-code/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
