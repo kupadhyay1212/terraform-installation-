@@ -1,4 +1,4 @@
-step 1: Inrallion procedure 
+step 1: Installion procedure 
 yum install wget unzip
 yum update
 Step 2: Download Terraform Package
