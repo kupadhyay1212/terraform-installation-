@@ -36,8 +36,8 @@ $ terraform init
 vi main.tf
 # Provider
  provider "aws" {
-   access_key = "AKIAZPTNDGAQPBV4SI5D"
-   secret_key = "j4bPgkihBWm0xrtiZGNcJWB2Ohus6ujHzWHIoOic"
+   access_key = "your-access-key"
+   secret_key = "your-secert-key"
    region = "ap-southeast-1"
  }
 
